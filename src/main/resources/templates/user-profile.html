@@ -1,0 +1,58 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" class="h-100">
+<span th:replace="~{fragments::head('Rate.It - ' + ${unTitle})}"></span>
+<body class="d-flex flex-column h-100 bg-black2">
+<span th:replace="~{fragments::header('','','','','')}"></span>
+
+<main role="main">
+    <div class="container">
+        <div id="content" class="content p-0">
+            <div class="profile-header">
+                <div class="profile-header-cover"></div>
+                <div class="profile-header-content">
+                    <div class="profile-header-img">
+                        <img th:src="@{'/ava/' + ${user.getAvatar()}}" alt="" />
+                    </div>
+
+                    <div class="profile-header-info">
+                        <h4 class="m-t-sm txt-logo" th:text="${user.getUsername()}"></h4>
+                    </div>
+                    <div th:each="at : ${user.getAuthorities()}">
+                        <p th:text="${at}"></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="profile-container">
+                <div class="row row-space-20">
+                    <div class="col-md-8">
+                        <div class="tab-content p-0">
+                            <div class="tab-pane active show" id="profile-about">
+                                <table class="table table-profile">
+                                    <thead>
+                                    <tr>
+                                        <th colspan="2" th:class="txt-1rem">INFORMATION</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td class="field" th:class="txt-1rem">Username</td>
+                                        <td class="value">
+                                            <p th:class="txt-1rem" th:text="${user.getUsername()}"></p>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<br>
+
+<span th:replace="fragments :: footer"></span>
+</body>
+</html>

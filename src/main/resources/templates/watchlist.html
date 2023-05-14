@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" class="no-js">
+<head>
+    <title>Rate.It - Watchlist</title>
+    <link th:href="@{/img/icon.png}" rel="icon">
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+    <link rel="profile" href="#">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Teko:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <!--Google Font-->
+    <link rel="stylesheet" href='http://fonts.googleapis.com/css?family=Dosis:400,700,500|Nunito:300,400,600' />
+    <!-- Mobile specific meta -->
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <meta name="format-detection" content="telephone-no">
+
+    <!-- CSS files -->
+    <link th:href="@{/css/navbar-footer.css}" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/plugins.css}">
+    <link rel="stylesheet" th:href="@{/css/style1.css}">
+</head>
+<body>
+<!--preloading-->
+<div id="preloader">
+    <img class="logo">
+    <div id="status">
+        <span></span>
+        <span></span>
+    </div>
+</div>
+<!--end of preloading-->
+
+<span th:replace="~{fragments::header('','','','','')}"></span>
+
+<div class="hero user-hero"></div>
+<div class="page-single userfav_list">
+    <div class="container">
+        <div class="row ipad-width2">
+            <div class="col-md-3 col-sm-12 col-xs-12">
+                <div class="user-information">
+                    <div class="user-img">
+                        <img th:src="@{'/ava/' + ${currentUser.getAvatar()}}" width="120" height="120" alt=""><br>
+                        <p class="txt-35px-gold" th:text="${currentUser.username}"></p>
+                    </div>
+                    <div class="user-fav">
+                        <ul>
+                            <li class="txt-without-cl-search"><a th:href="@{/ratings}">Ratings</a></li>
+                            <li class="active txt-without-cl-search"><a th:href="@{/watchlist}">Watchlist</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-9 col-sm-12 col-xs-12">
+                <div class="topbar-filter user">
+                    <p><span>[[${countWatchlist}]] </span> titles</p>
+<!--                    <label>Sort by:</label>-->
+<!--                    <select>-->
+<!--                        <option value="range">&#45;&#45; Choose option &#45;&#45;</option>-->
+<!--                        <option value="saab">&#45;&#45; Choose option 2&#45;&#45;</option>-->
+<!--                    </select>-->
+<!--                    <a href="userfavoritelist.html" class="list"><i class="ion-ios-list-outline active"></i></a>-->
+<!--                    <a  href="userfavoritegrid.html" class="grid"><i class="ion-grid "></i></a>-->
+                </div>
+                <div class="flex-wrap-movielist user-fav-list" th:each="title : ${titles}">
+                    <div class="movie-item-style-2">
+                        <img th:src="@{'/images/' + ${title.avatar}}" alt="">
+                        <div class="mv-item-infor">
+                            <h6><a th:href="@{'/title/' + ${title.id}}">[[${title.name}]] <span>([[${title.releaseYear}]])</span></a></h6>
+                            <p class="rate"><i class="ion-android-star"></i><span>8.1</span> /10</p>
+                            <p class="describe" th:text="${title.storyline}"></p>
+                            <p class="run-time"> Run Time: [[${title.runTime}]]         <span>MMPA: [[${title.mmpa}]] </span>         <span>Release: [[${title.releaseDate}]]</span></p>
+                            <p>Director: <a href="#">Joss Whedon</a></p>
+                            <p>Stars: <a href="#">Robert Downey Jr.,</a> <a href="#">Chris Evans,</a> <a href="#">  Chris Hemsworth</a></p>
+                        </div>
+                    </div>
+<!--                    <div class="movie-item-style-2">-->
+<!--                        <img src="images/uploads/mv2.jpg" alt="">-->
+<!--                        <div class="mv-item-infor">-->
+<!--                            <h6><a href="#">into the wild <span>(2014)</span></a></h6>-->
+<!--                            <p class="rate"><i class="ion-android-star"></i><span>7.8</span> /10</p>-->
+<!--                            <p class="describe">As Steve Rogers struggles to embrace his role in the modern world, he teams up with a fellow Avenger and S.H.I.E.L.D agent, Black Widow, to battle a new threat...</p>-->
+<!--                            <p class="run-time"> Run Time: 2h21’    .     <span>MMPA: PG-13 </span>    .     <span>Release: 1 May 2015</span></p>-->
+<!--                            <p>Director: <a href="#">Anthony Russo,</a><a href="#">Joe Russo</a></p>-->
+<!--                            <p>Stars: <a href="#">Chris Evans,</a> <a href="#">Samuel L. Jackson,</a> <a href="#">  Scarlett Johansson</a></p>-->
+<!--                        </div>-->
+<!--                    </div>-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<span th:replace="fragments :: footer"></span>
+
+<script th:src="@{/js/jquery.js}"></script>
+<script th:src="@{/js/plugins.js}"></script>
+<script th:src="@{/js/plugins2.js}"></script>
+<script th:src="@{/js/custom.js}"></script>
+</body>
+
+<!-- userprofile14:04-->
+</html>

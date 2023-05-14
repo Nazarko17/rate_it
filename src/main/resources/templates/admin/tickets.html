@@ -1,0 +1,51 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" class="h-100">
+<span th:replace="~{admin/fragments::head('Rate.It - Admin Panel')}"></span>
+
+<body class="d-flex flex-column h-100 bg-darkblue2">
+<span th:replace="~{admin/fragments::header}"></span>
+
+<br><br><br>
+<div class="row justify-content-center">
+    <div class="col-md-5">
+        <form class="" th:action="@{/admin/ticket-search}" method="post">
+            <input class="form-control txt-without-cl-search" type="text" placeholder="Search" name="keyword"><br>
+            <div class="row justify-content-center">
+                <button class="btn-lg btn-outline-success txt-without-cl-search" type="submit">SEARCH</button>
+            </div>
+        </form>
+    </div>
+</div><br>
+
+<div class="container">
+    <table class="table">
+        <thead class="thead-dark">
+        <tr class="txt">
+            <th scope="col">ID</th>
+            <th scope="col">USERNAME</th>
+            <th scope="col">SUBJECT</th>
+            <th scope="col">TEXT</th>
+            <th scope="col">ACTIONS</th>
+            <th scope="col">STATUS</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="txt-1rem" th:each="ticket : ${tickets}">
+            <th th:text="${ticket.id}"></th>
+            <td th:text="${ticket.userT.username}"></td>
+            <td th:text="${ticket.subject}"></td>
+            <td th:text="${ticket.text}"></td>
+            <td>
+                <a class="btn btn-outline-warning txt-without-cl-search" th:href="@{'/admin/answer-ticket/' + ${ticket.id}}">ANSWER</a>&nbsp;
+                <a class="btn btn-outline-success txt-without-cl-search" th:href="@{'/admin/close-ticket/' + ${ticket.id}}">CLOSE</a>
+            </td>
+            <td th:text="${ticket.status}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<br>
+
+<span th:replace="~{admin/fragments::footer}"></span>
+</body>
+</html>

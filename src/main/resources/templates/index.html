@@ -1,0 +1,47 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" class="h-100">
+<span th:replace="~{fragments::head('Rate.It')}"></span>
+
+<body class="d-flex flex-column h-100 bg-black2">
+<span th:replace="~{fragments::header('','','','','')}"></span>
+
+<main role="main">
+    <div class="container marketing">
+        <div class="row featurette">
+            <div class="col-md-7">
+                <p class="txt-32px-white">RATE MOVIES AND TV-SHOWS</p>
+<!--                <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>-->
+            </div>
+            <div class="col-md-5">
+                <img style="border: 5px solid black;" th:src="@{img/pic_1.jpg}">
+            </div>
+        </div>
+
+        <hr class="featurette-divider bg-light">
+
+        <div class="row featurette">
+            <div class="col-md-7 order-md-2">
+                <p class="txt-32px-white">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RATE GAMES</p>
+            </div>
+            <div class="col-md-5 order-md-1">
+                <img style="border: 5px solid black;" th:src="@{img/pic_2.jpg}">
+            </div>
+        </div>
+
+        <hr class="featurette-divider bg-light">
+
+        <div class="row featurette">
+            <div class="col-md-7">
+                <p class="txt-32px-white">RATE BOOKS</p>
+            </div>
+            <div class="col-md-5">
+                <img style="border: 5px solid black;" th:src="@{img/pic_3.jpg}">
+            </div>
+        </div>
+    </div>
+</main>
+<br>
+
+<span th:replace="fragments :: footer"></span>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link th:href="@{img/icon.png}" rel="icon">
+    <title>Rate.It - Sign Up</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Teko:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <link th:href="@{css/navbar-footer.css}" rel="stylesheet">
+    <link th:href="@{/css/log-reg-con.css}" rel="stylesheet">
+</head>
+
+<body class="d-flex flex-column h-100 bg-black2">
+<span th:replace="~{fragments::header('','','','','')}"></span>
+
+<form class="form-signin" th:action="@{/register}" method="post" th:object="${user}" enctype="multipart/form-data">
+    <br><br>
+    <h1 class="mb-3 txt-logo-blue text-center" th:text="${message}"></h1>
+    <h1 class="mb-3 txt-logo text-center">Please sign up</h1>
+    <label class="txt">Username</label>
+    <input type="text" class="form-control" id="username" placeholder="Username" th:field="*{username}"><br>
+    <p class="text-danger txt-without-cl-search text-uppercase" th:if="${#fields.hasErrors('username')}"
+       th:errors="*{username}"></p>
+    <label class="txt">Email address</label>
+    <input type="email" class="form-control" id="email" placeholder="Email address" th:field="*{email}"><br>
+    <p class="text-danger txt-without-cl-search text-uppercase" th:if="${#fields.hasErrors('email')}"
+       th:errors="*{email}"></p>
+    <label class="txt">Password</label>
+    <input type="password" class="form-control" placeholder="Password" th:field="*{password}"><br>
+    <p class="text-danger txt-without-cl-search text-uppercase" th:if="${#fields.hasErrors('password')}"
+       th:errors="*{password}"></p>
+    <label class="txt">Avatar</label>
+    <div class="input-group mb-3">
+        <div class="custom-file">
+            <input type="file" name="picture" class="custom-file-input" id="customFile">
+            <label class="custom-file-label" for="customFile">Choose file</label>
+        </div>
+    </div><br>
+    <button class="btn btn-lg btn-primary btn-block txt-btn" type="submit">SIGN UP</button>
+    <br><br>
+    <u th:class="txt"><a style="color:inherit" th:href="@{/login}">Already have an account? Sign In</a></u>
+</form>
+
+<span th:replace="fragments :: footer"></span>
+
+<script>
+    $(".custom-file-input").on("change", function() {
+        let fileName = $(this).val().split("\\").pop();
+        $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+    });
+</script>
+</body>
+</html>

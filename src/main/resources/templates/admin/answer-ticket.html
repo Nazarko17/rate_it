@@ -1,0 +1,27 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" class="h-100">
+<span th:replace="~{admin/fragments::head('Rate.It - Admin Panel')}"></span>
+
+<body class="d-flex flex-column h-100 bg-darkblue2">
+<span th:replace="~{admin/fragments::header}"></span>
+
+<br>
+<form class="form-signin" th:action="@{/admin/answer-ticket}" method="post">
+<!--    <h1 class="mb-3 txt-logo-blue text-center" th:text="${message}"></h1><br>-->
+    <div class="mb-3">
+        <input type="hidden" name="id" th:value="${ticket.id}"><br>
+        <label class="txt">Subject</label>
+        <input type="text" id="username" name="username" class="form-control" placeholder="Username" th:value="${ticket.subject}" readonly><br>
+        <label class="txt">Text</label>
+        <textarea class="form-control" id="text" name="text" rows="10" placeholder="Text" th:text="${ticket.text}" readonly></textarea>
+    </div>
+    <div class="mb-3">
+        <label class="txt">Answer</label>
+        <textarea class="form-control" id="answer" name="answer" rows="10" placeholder="Text"></textarea>
+    </div>
+    <button class="btn btn-lg btn-success btn-block txt-btn" type="submit">ANSWER</button>
+</form>
+
+<span th:replace="~{admin/fragments::footer}"></span>
+</body>
+</html>

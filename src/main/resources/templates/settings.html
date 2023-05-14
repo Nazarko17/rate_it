@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" class="no-js">
+<head>
+    <title>Rate.It - Settings</title>
+    <link th:href="@{/img/icon.png}" rel="icon">
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+    <link rel="profile" href="#">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Teko:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <!--Google Font-->
+    <link rel="stylesheet" href='http://fonts.googleapis.com/css?family=Dosis:400,700,500|Nunito:300,400,600' />
+    <!-- Mobile specific meta -->
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <meta name="format-detection" content="telephone-no">
+
+    <!-- CSS files -->
+    <link th:href="@{/css/navbar-footer.css}" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/plugins.css}">
+    <link rel="stylesheet" th:href="@{/css/style1.css}">
+</head>
+<body>
+<!--preloading-->
+<div id="preloader">
+    <img class="logo">
+    <div id="status">
+        <span></span>
+        <span></span>
+    </div>
+</div>
+<!--end of preloading-->
+
+<span th:replace="~{fragments::header('','','','','')}"></span>
+
+<div class="hero user-hero"></div>
+<div class="page-single">
+    <div class="container">
+        <div class="row ipad-width">
+            <div class="col-md-3 col-sm-12 col-xs-12">
+                <div class="user-information">
+                    <div class="user-img">
+                        <img th:src="@{'/ava/' + ${currentUser.getAvatar()}}" width="120" height="120" alt=""><br>
+                        <a href="#" class="redbtn">Change avatar</a>
+                    </div>
+                    <div class="user-fav">
+                        <ul>
+                            <li class="txt-without-cl-search"><a th:href="@{/ratings}">Ratings</a></li>
+                            <li class="txt-without-cl-search"><a th:href="@{/watchlist}">Watchlist</a></li>
+                            <li class="active txt-without-cl-search"><a th:href="@{/settings}">Settings</a></li>
+                        </ul>
+                    </div>
+                    <div class="user-fav">
+                        <ul>
+                            <li><a class="txt-without-cl-search" th:href="@{/logout}">Log out</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-9 col-sm-12 col-xs-12">
+                <div class="form-style-1">
+                    <form th:action="@{/settings}" method="post" enctype="multipart/form-data">
+                        <h1 class="txt-logo">Profile details</h1>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label class="txt">Username</label>
+                                <input type="text" placeholder="Username" class="form-control" name="username" th:value="${currentUser.username}">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="txt">Email address</label>
+                                <input type="text" placeholder="Username" class="form-control" name="email" th:value="${currentUser.email}">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label class="txt">Password</label>
+                                <input type="password" class="form-control" name="password" placeholder="Password">
+                            </div>
+                            <div class="col-md-6">
+                                <input type="hidden" name="id" th:value="${currentUser.id}">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <button class="btn btn-success txt-btn">SAVE</button>&nbsp;
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<span th:replace="fragments :: footer"></span>
+
+<script th:src="@{/js/jquery.js}"></script>
+<script th:src="@{/js/plugins.js}"></script>
+<script th:src="@{/js/plugins2.js}"></script>
+<script th:src="@{/js/custom.js}"></script>
+</body>
+
+<!-- userprofile14:04-->
+</html>

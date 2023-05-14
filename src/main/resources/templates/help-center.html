@@ -1,0 +1,27 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" class="h-100">
+<span th:replace="~{fragments::head('Rate.It - Help Center')}"></span>
+
+<body class="d-flex flex-column h-100 bg-black2">
+<span th:replace="~{fragments::header('','','','','active')}"></span>
+
+<main role="main">
+</main>
+<br>
+<form class="form-signin" th:action="@{/send-ticket}" method="post">
+<!--    <h1 class="mb-3 txt-logo-blue text-center" th:text="${message}"></h1><br>-->
+    <div class="mb-3">
+        <label class="txt">Username</label>
+        <input type="text" id="username" name="username" class="form-control" placeholder="Username" th:value="${uName}" readonly><br>
+        <label class="txt">Subject</label>
+        <input type="text" id="subject" name="subject" class="form-control" placeholder="Subject"><br>
+    </div>
+    <div class="mb-3">
+        <label class="txt">Text</label>
+        <textarea class="form-control" id="text" name="text" rows="10" placeholder="Text"></textarea>
+    </div>
+    <button class="btn btn-lg btn-success btn-block txt-btn" type="submit">SEND</button>
+</form>
+<span th:replace="fragments :: footer"></span>
+</body>
+</html>

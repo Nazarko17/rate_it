@@ -1,0 +1,103 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" class="h-100">
+<span th:replace="~{admin/fragments::head('Rate.It - Admin Panel')}"></span>
+
+<body class="d-flex flex-column h-100 bg-darkblue2">
+<span th:replace="~{admin/fragments::header}"></span>
+
+<form class="form-signin" id="f1">
+    <br><br>
+    <h1 class="mb-3 txt-logo text-center">ADD PERSON</h1>
+    <label class="txt">Name</label>
+    <input type="text" class="form-control txt-without-cl-search" name="name" placeholder="Name"><br>
+    <label class="txt">Surname</label>
+    <input type="text" class="form-control txt-without-cl-search" name="surname" placeholder="Surname"><br>
+    <label class="txt">Biography</label>
+    <input type="text" class="form-control txt-without-cl-search" name="bio" placeholder="Biography"><br>
+    <label class="txt">Avatar</label>
+    <div class="input-group mb-3">
+        <div class="custom-file">
+            <input type="file" name="picture" class="custom-file-input" id="customFile">
+            <label class="custom-file-label" for="customFile">Choose file</label>
+        </div>
+    </div><br>
+    <button id="btn1" class="btn btn-lg btn-primary btn-block txt-btn" type="submit">ADD PERSON</button>
+</form>
+<br><br>
+<div class="target1"></div>
+<br><br>
+
+<form class="form-signin" id="f2">
+    <br><br>
+    <h1 class="mb-3 txt-logo text-center">ADD ROLES</h1>
+    <label class="txt">Person ID</label>
+    <input type="text" class="form-control txt-without-cl-search" name="personId" placeholder="Person ID"><br>
+    <label class="txt">Title ID</label>
+    <input type="text" class="form-control txt-without-cl-search" name="movieId" placeholder="Title ID"><br>
+    <label class="txt">Role</label>
+    <input type="text" class="form-control txt-without-cl-search" name="role" placeholder="Role"><br>
+    <button id="btn2" class="btn btn-lg btn-primary btn-block txt-btn" type="submit">ADD ROLE</button>
+</form>
+<br><br>
+<div class="target2"></div>
+<br>
+<span th:replace="~{admin/fragments::footer}"></span>
+<script>
+    $('#btn1').click(function (e) {
+        e.preventDefault();
+        $('.target').empty();
+        var token = $("meta[name='_csrf']").attr("content");
+        var header = $("meta[name='_csrf_header']").attr("content");
+        $.ajax({
+            url: '/admin/add-person',
+            type: 'POST',
+            beforeSend: function(request) {
+                request.setRequestHeader(header, token);
+            },
+            data: new FormData($('#f1')[0]),
+            enctype: 'multipart/form-data',
+            processData: false,
+            contentType: false,
+            cache: false,
+            success: function (res) {
+                let $h1 = $('<h1 class="mb-3 txt-logo-blue text-center">Person has been successfully added!</h1>');
+                $('.target1').append($h1);
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        });
+    });
+
+    $('#btn2').click(function (e) {
+        e.preventDefault();
+        $('.target2').empty();
+        var token = $("meta[name='_csrf']").attr("content");
+        var header = $("meta[name='_csrf_header']").attr("content");
+        $.ajax({
+            url: '/admin/add-roles-to-person',
+            type: 'POST',
+            beforeSend: function(request) {
+                request.setRequestHeader(header, token);
+            },
+            data: new FormData($('#f2')[0]),
+            processData: false,
+            contentType: false,
+            cache: false,
+            success: function (res) {
+                let $h1 = $('<h1 class="mb-3 txt-logo-blue text-center">Role has been successfully added!</h1>');
+                $('.target2').append($h1);
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        });
+    });
+
+    $(".custom-file-input").on("change", function() {
+        let fileName = $(this).val().split("\\").pop();
+        $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+    });
+</script>
+</body>
+</html>

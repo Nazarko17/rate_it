@@ -1,0 +1,52 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" class="h-100">
+<span th:replace="~{admin/fragments::head('Rate.It - Admin Panel')}"></span>
+
+<body class="d-flex flex-column h-100 bg-darkblue2">
+<span th:replace="~{admin/fragments::header}"></span>
+
+<br><br><br>
+<div class="row justify-content-center">
+    <div class="col-md-5">
+        <form class="" th:action="@{/admin/movies-and-shows-search}" method="post">
+            <input class="form-control txt-without-cl-search" type="text" placeholder="Search" name="keyword"><br>
+            <div class="row justify-content-center">
+                <button class="btn btn-lg btn-success txt-without-cl-search" type="submit">SEARCH</button>
+            </div><br>
+            <div class="row justify-content-center">
+                <a class="btn btn-outline-info btn-lg txt-without-cl-search" th:href="@{'/admin/add-movie'}">ADD TITLE</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a class="btn btn-outline-info btn-lg txt-without-cl-search" th:href="@{'/admin/add-cast'}">ADD CAST</a>
+            </div>
+        </form>
+    </div>
+</div><br>
+
+<div class="container">
+    <table class="table">
+        <thead class="thead-dark">
+        <tr class="txt">
+            <th scope="col">ID</th>
+            <th scope="col">NAME</th>
+            <th scope="col">YEAR</th>
+            <th scope="col">ACTIONS</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="txt" th:each="movie : ${movies}">
+            <th th:text="${movie.id}"></th>
+            <td th:text="${movie.name}"></td>
+            <th th:text="${movie.releaseYear}"></th>
+            <td>
+                <a class="btn btn-outline-info txt-without-cl-search" th:href="@{'/title/' + ${movie.id}}">INFO</a>&nbsp;
+                <a class="btn btn-outline-warning txt-without-cl-search" th:href="@{'/admin/title-edit/' + ${movie.id}}">EDIT</a>&nbsp;
+                <a class="btn btn-outline-danger txt-without-cl-search" th:href="@{'/admin/title-delete/' + ${movie.id}}">DELETE</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<br>
+
+<span th:replace="~{admin/fragments::footer}"></span>
+</body>
+</html>

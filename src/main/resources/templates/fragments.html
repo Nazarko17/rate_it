@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      lang="en" class="h-100">
+
+<!-- head -->
+<head th:fragment="head(title)">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link th:href="@{/img/icon.png}" rel="icon">
+    <title th:text="${title}"></title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Teko:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <link th:href="@{/css/navbar-footer.css}" rel="stylesheet">
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+    <link th:href="@{/css/log-reg-con.css}" rel="stylesheet">
+</head>
+
+<body class="d-flex flex-column h-100 bg-black2">
+
+<!-- header -->
+<header th:fragment="header(act1, act2, act3, act4, act5)">
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-black1">
+        <div class="container">
+            <a class="navbar-brand txt-logo" th:href="@{/}"><img width="51" height="51" th:src="@{/img/icon.png}"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav mr-auto txt">
+                    <li class="nav-item" th:class="${act1}">
+                        <a class="nav-link" th:href="@{/movies}">MOVIES</a>
+                    </li>
+                    <li class="nav-item" th:class="${act2}">
+                        <a class="nav-link" th:href="@{/tv-shows}">TV SHOWS</a>
+                    </li>
+                    <li class="nav-item" th:class="${act3}">
+                        <a class="nav-link" th:href="@{/games}">GAMES</a>
+                    </li>
+                    <li class="nav-item" th:class="${act4}">
+                        <a class="nav-link" th:href="@{/books}">BOOKS</a>
+                    </li>
+                    <li class="nav-item" th:class="${act5}">
+                        <a class="nav-link" th:href="@{/help-center}">HELP CENTER</a>
+                    </li>
+                </ul>
+
+<!--                <div class="input-group mb-3">&ndash;&gt;-->
+                    <!--                    <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">-->
+                    <!--                    <button class="btn btn-outline-secondary" type="button" id="button-addon2">Button</button>-->
+                    <!--                </div>-->
+
+                    <!--                <form class="w-50 me-3">-->
+                    <!--                    <input class="form-control mr-sm-2 txt-without-cl-search" type="text" placeholder="Search" aria-label="Search">-->
+                    <!--                    <button class="btn btn-outline-success txt-without-cl-search mr-sm-2" type="submit">SEARCH</button>-->
+                    <!--                </form>-->
+                <form class="form-inline mt-2 mt-md-0">
+                    <input class="form-control mr-sm-2 txt-without-cl-search" type="text" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success txt-without-cl-search mr-sm-2" type="submit">SEARCH</button>
+                </form>
+                <div sec:authorize="!isAuthenticated()">
+                    <a class="btn btn-outline-light txt-without-cl-search mr-sm-2" th:href="@{/login}">SIGN-IN</a>
+                    <a class="btn btn-primary txt-without-cl-search mr-sm-2" th:href="@{/register}">SIGN-UP</a>
+                </div>
+                <ul class="navbar-nav">
+                    <div sec:authorize="isAuthenticated()" class="dropdown txt">
+                        <a class="nav-link dropdown-toggle txt" href="#" id="dropdown01" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false">
+                            <img th:src="@{'/img/ava.png'}" width="32" height="32">
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark txt-20px-black" aria-labelledby="dropdown01">
+                            <li><a class="dropdown-item" th:href="@{/profile}">Ratings</a></li>
+                            <li><a class="dropdown-item" th:href="@{/watchlist}">Watchlist</a></li>
+                            <li><a class="dropdown-item" th:href="@{/settings}">Settings</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" th:href="@{/logout}">Sign out</a></li>
+                        </ul>
+                    </div>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<!-- footer -->
+<div id="footer" th:fragment="footer">
+    <footer class="footer mt-auto py-3 bg-black1">
+        <div class="container text-center">
+            <p class="txt">RATE.IT &copy 2022</p>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+</div>
+
+</body>
+</html>

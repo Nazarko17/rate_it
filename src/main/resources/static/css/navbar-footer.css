@@ -1,0 +1,90 @@
+main > .container {
+  padding: 60px 15px 0;
+}
+
+.txt-logo {
+  color: white;
+  font: bold 35px 'Teko', sans-serif;
+}
+
+.txt-35px-gold {
+  color: goldenrod;
+  font: bold 35px 'Teko', sans-serif;
+}
+
+.txt-logo-blue {
+  color: royalblue;
+  font: bold 35px 'Teko', sans-serif;
+}
+
+.txt-32px-white {
+  color: white;
+  font: bold 32px 'Teko', sans-serif;
+}
+
+.txt {
+  color: white;
+  font: bold 20px 'Teko', sans-serif;
+}
+
+.txt-btn {
+  color: white;
+  font: bold 25px 'Teko', sans-serif;
+}
+
+.txt-1rem {
+  color: white;
+  font: bold 16px 'Teko', sans-serif;
+}
+
+.txt-20px-black {
+  color: black;
+  font: bold 20px 'Teko', sans-serif;
+}
+
+.txt-20px-white {
+  color: white;
+  font: bold 20px 'Teko', sans-serif;
+}
+
+.txt-14px-dosis {
+  color: white;
+  font: bold 14px 'Dosis', sans-serif;
+  text-transform: uppercase;
+  padding: 13px 25px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+
+.txt-without-cl20 {
+  font: bold 16px 'Teko', sans-serif;
+}
+
+.txt-without-cl-search {
+  font: bold 16px 'Teko', sans-serif;
+}
+
+.txt-without-cl35 {
+  font: bold 35px 'Teko', sans-serif;
+}
+
+.txt-without-size {
+  font-family: 'Teko', sans-serif;
+}
+
+.bg-black1 {
+  background-color: #111111;
+}
+
+.bg-black2 {
+  background-color: #262626;
+}
+
+.bg-darkblue1 {
+  background-color: #131D25;
+}
+
+.bg-darkblue2 {
+  background-color: #243347;
+}

@@ -1,0 +1,75 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" class="h-100">
+<span th:replace="~{admin/fragments::head('Rate.It - Admin Panel')}"></span>
+
+<body class="d-flex flex-column h-100 bg-darkblue2">
+<span th:replace="~{admin/fragments::header}"></span>
+
+<form class="form-signin" id="f1">
+    <br><br>
+    <h1 class="mb-3 txt-logo text-center">ADD MOVIE</h1>
+    <label class="txt">Username</label>
+    <input type="text" class="form-control txt-without-cl-search" placeholder="Name" name="name"><br>
+    <label class="txt">Storyline</label>
+    <input type="text" class="form-control txt-without-cl-search" placeholder="Plot" name="storyline"><br>
+    <label class="txt">Release Year</label>
+    <input type="text" class="form-control txt-without-cl-search" placeholder="Release Year" name="releaseYear"><br>
+    <label class="txt">Run Time</label>
+    <input type="text" class="form-control txt-without-cl-search" placeholder="Run Time" name="runTime"><br>
+    <label class="txt">MMPA</label>
+    <input type="text" class="form-control txt-without-cl-search" placeholder="MMPA" name="mmpa"><br>
+    <label class="txt">Budget</label>
+    <input type="text" class="form-control txt-without-cl-search" placeholder="Budget" name="budget"><br>
+    <label class="txt">Box Office</label>
+    <input type="text" class="form-control txt-without-cl-search" placeholder="Box Office" name="boxOffice"><br>
+    <label class="txt">Trailer URL</label>
+    <input type="text" class="form-control txt-without-cl-search" placeholder="Trailer URL" name="trailerURL"><br>
+    <label class="txt">Avatar</label>
+    <div class="input-group mb-3">
+        <div class="custom-file">
+            <input type="file" name="picture" class="custom-file-input" id="customFile">
+            <label class="custom-file-label" for="customFile">Choose file</label>
+        </div>
+    </div><br>
+    <button id="btn" class="btn btn-lg btn-primary btn-block txt-btn" type="submit">ADD TITLE</button>
+</form>
+<br><br>
+<div class="target"></div>
+<br>
+
+<span th:replace="~{admin/fragments::footer}"></span>
+
+<script>
+    $('#btn').click(function (e) {
+        e.preventDefault();
+        $('.target').empty();
+        var token = $("meta[name='_csrf']").attr("content");
+        var header = $("meta[name='_csrf_header']").attr("content");
+        $.ajax({
+            url: '/admin/add-movie',
+            type: 'POST',
+            beforeSend: function(request) {
+                request.setRequestHeader(header, token);
+            },
+            data: new FormData($('#f1')[0]),
+            enctype: 'multipart/form-data',
+            processData: false,
+            contentType: false,
+            cache: false,
+            success: function (res) {
+                let $h1 = $('<h1 class="mb-3 txt-logo-blue text-center">Title has been successfully added!</h1>');
+                $('.target').append($h1);
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        });
+    });
+
+    $(".custom-file-input").on("change", function() {
+        let fileName = $(this).val().split("\\").pop();
+        $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+    });
+</script>
+</body>
+</html>
